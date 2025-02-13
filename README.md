@@ -55,17 +55,9 @@ Watch the gameplay video on YouTube to see [Brackeys Game Jam Gameplay](Link to 
   
 ---
 
-## **Installation and Setup**
+## **Try the Game**
 
-1. Clone the repository to your local machine.
-
-    ```bash
-        git clone https://github.com/Mecha-NOX/Brackeys-Game-Jam-2025.git
-    ```
-
-2. Open the project in Unreal Engine 5.3.
-
-3. Run the project in the editor or package it for your desired platform to start playing!
+Play the game on Itch.io: [Brackeys Game Jam](Link to Itch.io page here)
 
 ---
 
@@ -82,12 +74,26 @@ Watch the gameplay video on YouTube to see [Brackeys Game Jam Gameplay](Link to 
 
 ---
 
+## **Installation and Setup**
+
+1. Clone the repository to your local machine.
+
+    ```bash
+        git clone https://github.com/Mecha-NOX/Brackeys-Game-Jam-2025.git
+    ```
+
+2. Open the project in Unreal Engine 5.3.
+
+3. Run the project in the editor or package it for your desired platform to start playing!
+
+---
+
 ## **Contact**
 
 For questions or collaboration, feel free to reach out:
 
 **Email:** 
-- <kartik.chaturvedi.dev@gmail.com>
+- <kcfantastic@gmail.com>
 - <kbnhus@gmail.com>
 - <emailID@email.com>
 - <emailID@email.com>
