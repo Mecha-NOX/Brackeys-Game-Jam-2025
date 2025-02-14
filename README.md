@@ -1,4 +1,4 @@
-# **Brackeys Game Jam**
+![image](https://github.com/user-attachments/assets/5d2d438a-9621-4e1a-b05d-4ca329b087cc)# **Brackeys Game Jam**
 
 *A Game | Developed in Unreal Engine 5*
 
@@ -95,7 +95,7 @@ For questions or collaboration, feel free to reach out:
 **Email:** 
 - <kcfantastic@gmail.com>
 - <kbnhus@gmail.com>
-- <emailID@email.com>
+- <gee85@hotmail.co.uk>
 - <emailID@email.com>
 - <emailID@email.com>
 
