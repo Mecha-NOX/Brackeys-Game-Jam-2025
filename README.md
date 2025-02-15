@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/5d2d438a-9621-4e1a-b05d-4ca329b087cc)# **Brackeys Game Jam**
+# **Brackeys Game Jam**
 
 *A Game | Developed in Unreal Engine 5*
 
