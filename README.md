@@ -97,7 +97,7 @@ For questions or collaboration, feel free to reach out:
 - <kbnhus@gmail.com>
 - <gee85@hotmail.co.uk>
 - <angelmilnight@gmail.com>
-- <realnaste@gmail.com>
+- <patrykpysiak@gmail.com>
 - <emailID@email.com>
 
 ---
