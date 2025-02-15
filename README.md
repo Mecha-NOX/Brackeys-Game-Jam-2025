@@ -96,6 +96,7 @@ For questions or collaboration, feel free to reach out:
 - <kcfantastic@gmail.com>
 - <kbnhus@gmail.com>
 - <gee85@hotmail.co.uk>
+- <angelmilnight@gmail.com>
 - <emailID@email.com>
 - <emailID@email.com>
 
