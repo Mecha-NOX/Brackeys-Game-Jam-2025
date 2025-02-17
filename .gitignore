@@ -4,6 +4,12 @@ Intermediate
 Saved
 Build
 
+# Unless we wanna share editor settings and project settings
+Config
+
+# GW - Protoype asset folders
+Content/Assets/UE_Proto
+
 .idea
 .vscode
 .vs
