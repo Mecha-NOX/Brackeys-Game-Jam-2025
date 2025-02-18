@@ -12,5 +12,14 @@
 				"Engine"
 			]
 		}
+<<<<<<< HEAD
+=======
+	],
+	"Plugins": [
+		{
+			"Name": "ActorPalette",
+			"Enabled": true
+		}
+>>>>>>> dev
 	]
 }
