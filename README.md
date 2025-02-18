@@ -1,46 +1,48 @@
-# **Brackeys Game Jam**
+# **Don't Worry, It's Just A Power Cut**
 
-*A Game | Developed in Unreal Engine 5*
+*A Psychological Horror Game | Developed in Unreal Engine 5*
 
 ---
 
 ## **Overview**
-This project, developed in Unreal Engine 5, is part of a week long game Jam.
+This project, developed in Unreal Engine 5, is part of Brackeys 2025.1 week long game Jam with the theme "Nothing Can Go Wrong".
+The game sees the player endure a light's out scenario, home alone where events unfold and test the players sanity.
 
 ---  
 
 ## **Challenges**
 
-1. Challenge-1
-2. Challenge-2
-3. Challenge-3
-4. Challenge-4
+1. Grab a flashlight and find the breaker
+2. Pyschological horror elements to overcome - not a jump-scare-a-thon
+3. Find and fix the problem with the lights / circuit breaker
+4. Escape with your life
 
 ---
 
 ## **Features**
 
-### **Feature-1**
+### **No 2 play throughs the same**
 
-- Sub-Feature-1
-- Sub-Feature-2
-- Sub-Feature-3
+- Random placement of objectives
+- Random placement of key items
+- Psychological events evolve
 
-### **Feature-2**
+### **Psychological Horror**
 
-- Sub-Feature-1
-- Sub-Feature-2
-- Sub-Feature-3
+- Not relying purely on jump scares to create a thrilling environment
+- Can you trully believe what you are seeing?
+- Do you really want to go down THOSE stairs or through THAT door?
 
 ---
 
 ## **Technologies Used**
 
-- Unreal Engine 5.3.
+- Unreal Engine 5.3
 - C++ for Game Development.
-- Any Other Technology
-- Any Other Technology-2
-  
+- Unreal Blueprints
+
+---
+# **TO-DO** below
 ---
 
 ## **Screenshots / GIFs**
