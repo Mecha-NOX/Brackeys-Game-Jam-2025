@@ -4,10 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "ChangeableInterface.h"
 #include "LookAwayChange.generated.h"
 
 UCLASS()
-class POWERGAME_API ALookAwayChange : public AActor
+class POWERGAME_API ALookAwayChange : public AActor, public IChangeableInterface
 {
 	GENERATED_BODY()
 	
@@ -22,5 +23,7 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
+	virtual void Change() override;
+	bool bIsLookingAway;
+	
 };
