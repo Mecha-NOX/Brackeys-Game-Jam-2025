@@ -17,6 +17,9 @@ class POWERGAME_API APowerGameLight : public APowerGameActor
 public:
 	APowerGameLight();
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Lights")
+	bool bIsLightOn = false;
+
 protected:	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TObjectPtr<UStaticMeshComponent> LightMeshComponent;
