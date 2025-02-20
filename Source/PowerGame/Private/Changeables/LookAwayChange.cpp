@@ -3,6 +3,7 @@
 
 #include "Changeables/LookAwayChange.h"
 
+#include "Actor/ActorUtils.h"
 #include "Kismet/GameplayStatics.h"
 
 // Sets default values
@@ -24,26 +25,8 @@ void ALookAwayChange::BeginPlay()
 void ALookAwayChange::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
-	APlayerController* PlayerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
-	if (PlayerController)
-	{
-		FVector PlayerLocation = PlayerController->GetPawn()->GetActorLocation();
-		FVector PlayerForward = PlayerController->GetPawn()->GetActorForwardVector();
-		FVector DirectionToActor = GetActorLocation() - PlayerLocation;
-		DirectionToActor.Normalize();
-
-		// Check if actor is behind the player
-		float DotProduct = FVector::DotProduct(PlayerForward, DirectionToActor);
-		bool bIsBehindPlayer = DotProduct < 0.0f;
-
-		// Check if actor is out of view
-		FVector2D ScreenPosition;
-		bool bIsOnScreen = PlayerController->ProjectWorldLocationToScreen(GetActorLocation(), ScreenPosition);
-
-		bIsLookingAway = bIsBehindPlayer && !bIsOnScreen;
-		Change();
-	}
+	bIsLookingAway = ActorUtils::IsActorBehindPlayer(this) && !ActorUtils::IsActorOnScreen(this);
+	Change();
 }
 
 void ALookAwayChange::Change()

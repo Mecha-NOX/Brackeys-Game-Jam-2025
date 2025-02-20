@@ -3,6 +3,8 @@
 
 #include "Changeables/SwapChangeable.h"
 
+#include "Actor/ActorUtils.h"
+
 
 // Sets default values
 ASwapChangeable::ASwapChangeable()
@@ -30,6 +32,11 @@ void ASwapChangeable::BeginPlay()
 
 void ASwapChangeable::Change()
 {
+	if (ActorUtils::IsActorOnScreen(this))
+	{
+		return;
+	}
+	
 	// if We have more than 1 mesh get a new random mesh from the array
 	if (Meshes.Num() > 1)
 	{
