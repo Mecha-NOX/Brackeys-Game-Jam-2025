@@ -15,6 +15,30 @@ APowerGameLightController::APowerGameLightController()
 	PrimaryActorTick.bCanEverTick = false;
 }
 
+void APowerGameLightController::TurnOfAllLights()
+{
+	for (ULightComponent* WorldLight : WorldLights)
+	{
+		WorldLight->SetIntensity(0.f);
+	}
+	for (APowerGameLight* CustomLight : CustomLights)
+	{
+		CustomLight->TurnOff();
+	}
+}
+
+void APowerGameLightController::TurnOnAllLights()
+{
+	for (ULightComponent* WorldLight : WorldLights)
+	{
+		WorldLight->SetIntensity(2.f);
+	}
+	for (APowerGameLight* CustomLight : CustomLights)
+	{
+		CustomLight->TurnOn();
+	}
+}
+
 void APowerGameLightController::BeginPlay()
 {
 	Super::BeginPlay();
@@ -75,13 +99,13 @@ void APowerGameLightController::DetermineLightState(const EBreakerState BreakerS
 	switch (BreakerState)
 	{
 		case EBS_Off:
-			UE_LOG(LogTemp, Display, TEXT("DetermineLightState: Off"));
+			TurnOfAllLights();
 			break;
 		case EBS_Tripped:
-			UE_LOG(LogTemp, Display, TEXT("DetermineLightState: Tripped"));
+			TurnOfAllLights();
 			break;
 		case EBS_On:
-			UE_LOG(LogTemp, Display, TEXT("DetermineLightState: On"));
+			TurnOnAllLights();
 			break;
 		default:
 			UE_LOG(LogTemp, Display, TEXT("DetermineLightState: Unknown"));

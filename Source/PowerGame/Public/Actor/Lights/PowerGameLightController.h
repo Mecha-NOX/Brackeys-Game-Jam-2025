@@ -19,18 +19,23 @@ class POWERGAME_API APowerGameLightController : public APowerGameActor
 
 public:
 	APowerGameLightController();
+
+	void TurnOfAllLights();
+	void TurnOnAllLights();
 	
 protected:
 	virtual void BeginPlay() override;
 	
 private:
+	/*** Game initialisation functionality ***/
 	void AddWorldLightsToArray();
 	void AddCustomLightsToArray();
 	TArray<ULightComponent*> WorldLights;
-	TArray<APowerGameLight*> CustomLights;
+	TArray<APowerGameLight*> CustomLights;	
 
 	UPROPERTY()
 	TObjectPtr<class APowerGameBreaker> Breaker;
+	/*** End Game initialisation functionality ***/
 
 	UFUNCTION(BlueprintCallable)
 	void DetermineLightState(const EBreakerState BreakerState);
