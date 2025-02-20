@@ -23,5 +23,5 @@ class POWERGAME_API IChangeableInterface
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
 
-	virtual void Change();
+	virtual void Change() = 0;
 };
