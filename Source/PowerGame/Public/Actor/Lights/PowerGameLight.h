@@ -22,25 +22,36 @@ public:
 
 	void TurnOff();
 	void TurnOn();
-	void FlickerLights(float MaxFlickerDelay);
+	void FlickerLights();
 
 protected:
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaSeconds) override;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-	TObjectPtr<UStaticMeshComponent> LightMeshComponent;
+	TObjectPtr<UStaticMeshComponent> LightMeshComponent;	
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Lights")
-	int DefaultLightIntensity = 75.f;
+	float DefaultLightIntensity = 75.f;
 
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Lights")
-	//float MaxFlickerDelay = 0.7f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Lights")
+	float FlickerLightIntensity;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Lights")
+	float MinFlickerDelay = 0.f;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Lights")
+	float MaxFlickerDelay = 0.4f;
 
 private:
-	UPROPERTY()
-	TArray<ULightComponent*> LightComponents;
-
 	void StoreLightSources();
+	
+	UPROPERTY(BlueprintReadOnly, meta = (AllowPrivateAccess = true))
+	TArray<ULightComponent*> LightComponents;
+	
+	FTimerHandle FlickerLightTimer;
+
+	float TimeSinceLastFlicker = 0;
+	float FlickerDelay = 0;
 };
 

@@ -15,7 +15,26 @@ APowerGameLightController::APowerGameLightController()
 	PrimaryActorTick.bCanEverTick = false;
 }
 
-void APowerGameLightController::TurnOfAllLights()
+void APowerGameLightController::BeginPlay()
+{
+	Super::BeginPlay();
+
+	// Store a reference to the breaker and bind to the event
+	Breaker = Cast<APowerGameBreaker>(UGameplayStatics::GetActorOfClass(GetWorld(), APowerGameBreaker::StaticClass()));
+	if (Breaker)
+	{
+		Breaker->OnBreakerActivated.AddDynamic(this, &ThisClass::DetermineLightState);
+	}
+
+	// Store all lights in the world so we don't need to keep scanning for them, kept separate because our custom lights contain functions
+	AddWorldLightsToArray();
+	AddCustomLightsToArray();
+
+	// TEST
+	FlickerLights();
+}
+
+void APowerGameLightController::TurnOffAllLights()
 {
 	for (ULightComponent* WorldLight : WorldLights)
 	{
@@ -31,7 +50,7 @@ void APowerGameLightController::TurnOnAllLights()
 {
 	for (ULightComponent* WorldLight : WorldLights)
 	{
-		WorldLight->SetIntensity(2.f);
+		WorldLight->SetIntensity(DefaultWorldLightIntensity);
 	}
 	for (APowerGameLight* CustomLight : CustomLights)
 	{
@@ -39,20 +58,40 @@ void APowerGameLightController::TurnOnAllLights()
 	}
 }
 
-void APowerGameLightController::BeginPlay()
+void APowerGameLightController::TurnOffWorldLights()
 {
-	Super::BeginPlay();
-
-	// Store a reference to the breaker and bind to the event
-	Breaker = Cast<APowerGameBreaker>(UGameplayStatics::GetActorOfClass(GetWorld(), APowerGameBreaker::StaticClass()));
-	if (Breaker)
+	for (ULightComponent* WorldLight : WorldLights)
 	{
-		Breaker->OnBreakerActivated.AddDynamic(this, &ThisClass::DetermineLightState);
+		WorldLight->SetIntensity(0.f);
+	}
+}
+
+void APowerGameLightController::TurnOnWorldLights()
+{
+	for (ULightComponent* WorldLight : WorldLights)
+	{
+		WorldLight->SetIntensity(DefaultWorldLightIntensity);
+	}
+}
+
+void APowerGameLightController::FlickerLights()
+{
+	FlickerLightIntensity = FMath::RandRange(0.f, 5.f);
+	// Flip intensity between two values
+	static bool bUseFlickerIntensity = false;
+	float NewIntensity = bUseFlickerIntensity ? FlickerLightIntensity : DefaultWorldLightIntensity;
+	bUseFlickerIntensity = !bUseFlickerIntensity;
+
+	// Apply intensity to all light components
+	for (ULightComponent* WorldLight : WorldLights)
+	{
+		WorldLight->SetIntensity(NewIntensity);
 	}
 
-	// Store all lights in the world so we don't need to keep scanning for them, kept separate because our custom lights contain functions
-	AddWorldLightsToArray();
-	AddCustomLightsToArray();
+	FlickerDelay = FMath::RandRange(MinFlickerDelay, MaxFlickerDelay);
+	GetWorldTimerManager().SetTimer(FlickerLightTimer, this, &ThisClass::FlickerLights, FlickerDelay);
+
+	TimeSinceLastFlicker = 0.0f;
 }
 
 // All of these lights are placed PointLights or SpotLights - excludes the world lighting so as not to shut off the moon
@@ -99,10 +138,10 @@ void APowerGameLightController::DetermineLightState(const EBreakerState BreakerS
 	switch (BreakerState)
 	{
 		case EBS_Off:
-			TurnOfAllLights();
+			TurnOffAllLights();
 			break;
 		case EBS_Tripped:
-			TurnOfAllLights();
+			TurnOffAllLights();
 			break;
 		case EBS_On:
 			TurnOnAllLights();

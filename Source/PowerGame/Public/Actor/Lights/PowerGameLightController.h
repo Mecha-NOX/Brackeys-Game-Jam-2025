@@ -20,11 +20,27 @@ class POWERGAME_API APowerGameLightController : public APowerGameActor
 public:
 	APowerGameLightController();
 
-	void TurnOfAllLights();
+	void TurnOffAllLights();
 	void TurnOnAllLights();
+	UFUNCTION(BlueprintCallable)
+	void TurnOffWorldLights();
+	void TurnOnWorldLights();
+	void FlickerLights();
 	
 protected:
 	virtual void BeginPlay() override;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Lights")
+	float DefaultWorldLightIntensity = 2.f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Lights")
+	float FlickerLightIntensity;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Lights")
+	float MinFlickerDelay = 0.f;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Lights")
+	float MaxFlickerDelay = 0.4f;
 	
 private:
 	/*** Game initialisation functionality ***/
@@ -37,7 +53,11 @@ private:
 	TObjectPtr<class APowerGameBreaker> Breaker;
 	/*** End Game initialisation functionality ***/
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION()
 	void DetermineLightState(const EBreakerState BreakerState);
+
+	FTimerHandle FlickerLightTimer;
+	float TimeSinceLastFlicker = 0;
+	float FlickerDelay = 0;
 };
 
