@@ -34,7 +34,7 @@ protected:
 	float DefaultWorldLightIntensity = 2.f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Lights")
-	float FlickerLightIntensity;
+	float FlickerLightIntensity = 0.f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Lights")
 	float MinFlickerDelay = 0.f;
