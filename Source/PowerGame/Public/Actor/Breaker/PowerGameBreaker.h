@@ -6,6 +6,8 @@
 #include "Actor/PowerGameActor.h"
 #include "PowerGameBreaker.generated.h"
 
+class UPoseableMeshComponent;
+
 UENUM()
 enum EBreakerState : uint8
 {
@@ -33,4 +35,8 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category="Breaker")
 	void ActivateBreaker(const EBreakerState BreakerState);
+
+protected:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Breaker")
+	TObjectPtr<UPoseableMeshComponent> BreakerMesh;
 };
