@@ -39,4 +39,7 @@ public:
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Breaker")
 	TObjectPtr<UPoseableMeshComponent> BreakerMesh;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Breaker")
+	TObjectPtr<UCurveFloat> BreakerCurve;
 };
