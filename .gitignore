@@ -8,8 +8,6 @@ Build
 Config/DefaultEditorPerProjectUserSettings.ini
 Config/DefaultEditor.ini
 
-# GW - Protoype asset folders
-Content/Assets/UE_Proto
 
 .idea
 .vscode

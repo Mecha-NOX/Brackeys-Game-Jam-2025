@@ -85,7 +85,7 @@ void APowerGameLightController::FlickerLights()
 	// Apply intensity to all light components
 	for (ULightComponent* WorldLight : WorldLights)
 	{
-		WorldLight->SetIntensity(NewIntensity);
+		WorldLight->SetIntensity(FlickerLightIntensity);
 	}
 
 	FlickerDelay = FMath::RandRange(MinFlickerDelay, MaxFlickerDelay);
@@ -97,10 +97,10 @@ void APowerGameLightController::FlickerLights()
 // All of these lights are placed PointLights or SpotLights - excludes the world lighting so as not to shut off the moon
 void APowerGameLightController::AddWorldLightsToArray()
 {
-	TArray<AActor*> SpotlightActors;
-	UGameplayStatics::GetAllActorsOfClass(GetWorld(), APointLight::StaticClass(), SpotlightActors);
+	TArray<AActor*> PointLights;
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), APointLight::StaticClass(), PointLights);
 
-	for (AActor* Actor : SpotlightActors)
+	for (AActor* Actor : PointLights)
 	{
 		if (APointLight* PointLight = Cast<APointLight>(Actor))
 		{
@@ -108,10 +108,10 @@ void APowerGameLightController::AddWorldLightsToArray()
 		}
 	}
 
-	TArray<AActor*> SpotlightLightsActors;
-	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ASpotLight::StaticClass(), SpotlightLightsActors);
+	TArray<AActor*> SpotLights;
+	UGameplayStatics::GetAllActorsOfClass(GetWorld(), ASpotLight::StaticClass(), SpotLights);
 
-	for (AActor* Actor : SpotlightLightsActors)
+	for (AActor* Actor : SpotLights)
 	{
 		if (ASpotLight* SpotLight = Cast<ASpotLight>(Actor))
 		{
