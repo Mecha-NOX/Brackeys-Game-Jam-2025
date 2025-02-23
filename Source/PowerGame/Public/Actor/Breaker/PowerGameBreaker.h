@@ -40,6 +40,7 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Breaker")
 	TObjectPtr<UPoseableMeshComponent> BreakerMesh;
 
+	// IDEA - Use curves to change the way the door opens, fast & furious or slow and subtle.. or a mix, can use many curves for many effects
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Breaker")
 	TObjectPtr<UCurveFloat> BreakerCurve;
 };
