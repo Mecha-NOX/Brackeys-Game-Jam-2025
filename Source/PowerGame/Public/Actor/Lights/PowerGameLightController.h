@@ -51,7 +51,7 @@ private:
 	void TurnOffWorldLights();
 	void TurnOnWorldLights();
 	void FlickerLights();
-
+	void UpdateGameModeLigths(bool bIsPowered);
 	UFUNCTION(BlueprintCallable)
 	void DetermineLightState();
 

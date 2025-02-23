@@ -8,7 +8,10 @@
 #include "Components/LightComponent.h"
 #include "Engine/PointLight.h"
 #include "Engine/SpotLight.h"
+#include "Game/PowerGameMode.h"
 #include "Kismet/GameplayStatics.h"
+
+class APowerGameMode;
 
 APowerGameLightController::APowerGameLightController()
 {
@@ -44,6 +47,8 @@ void APowerGameLightController::TurnOffAllLights()
 	{
 		CustomLight->TurnOff();
 	}
+	//update game mode lights
+	UpdateGameModeLigths(false);
 }
 
 void APowerGameLightController::TurnOnAllLights()
@@ -56,6 +61,8 @@ void APowerGameLightController::TurnOnAllLights()
 	{
 		CustomLight->TurnOn();
 	}
+	//update game mode lights
+	UpdateGameModeLigths(true);
 }
 
 void APowerGameLightController::TurnOffWorldLights()
@@ -92,6 +99,15 @@ void APowerGameLightController::FlickerLights()
 	GetWorldTimerManager().SetTimer(FlickerLightTimer, this, &ThisClass::FlickerLights, FlickerDelay);
 
 	TimeSinceLastFlicker = 0.0f;
+}
+
+void APowerGameLightController::UpdateGameModeLigths(bool bIsPowered)
+{
+	//cast game mode to PowerGameMode and call SwitchLights
+	if (APowerGameMode* GameMode = Cast<APowerGameMode>(GetWorld()->GetAuthGameMode()))
+	{
+		GameMode->SwitchLights(bIsPowered);
+	}
 }
 
 // All of these lights are placed PointLights or SpotLights - excludes the world lighting so as not to shut off the moon
