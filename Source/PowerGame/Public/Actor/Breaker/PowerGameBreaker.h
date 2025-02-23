@@ -17,7 +17,7 @@ enum EBreakerState : uint8
 	EBS_MAX UMETA(DisplayName = "DefaultMAX"),
 };
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FBreakerActivatedEvent, EBreakerState, BreakerState);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FBreakerActivatedEvent);
 
 /**
  * 
@@ -30,11 +30,11 @@ class POWERGAME_API APowerGameBreaker : public APowerGameActor
 public:
 	APowerGameBreaker();
 
-	UPROPERTY(BlueprintAssignable, Category="Event")
+	UPROPERTY()
 	FBreakerActivatedEvent OnBreakerActivated;
 
 	UFUNCTION(BlueprintCallable, Category="Breaker")
-	void ActivateBreaker(const EBreakerState BreakerState);
+	void ActivateBreaker(const EBreakerState NewBreakerState);
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Breaker")
@@ -43,4 +43,12 @@ protected:
 	// IDEA - Use curves to change the way the door opens, fast & furious or slow and subtle.. or a mix, can use many curves for many effects
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Breaker")
 	TObjectPtr<UCurveFloat> BreakerCurve;
+
+private:
+	UPROPERTY()
+	TEnumAsByte<EBreakerState> BreakerState;
+
+	// Getters & Setters
+public:
+	EBreakerState GetBreakerState() const {return BreakerState;}
 };

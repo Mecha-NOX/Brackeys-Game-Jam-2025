@@ -14,7 +14,8 @@ APowerGameBreaker::APowerGameBreaker()
 	SetRootComponent(BreakerMesh);
 }
 
-void APowerGameBreaker::ActivateBreaker(const EBreakerState BreakerState)
+void APowerGameBreaker::ActivateBreaker(const EBreakerState NewBreakerState)
 {
-	OnBreakerActivated.Broadcast(BreakerState);
+	BreakerState = NewBreakerState;
+	OnBreakerActivated.Broadcast();
 }

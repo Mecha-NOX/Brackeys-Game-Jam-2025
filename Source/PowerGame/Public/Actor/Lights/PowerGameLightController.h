@@ -18,14 +18,7 @@ class POWERGAME_API APowerGameLightController : public APowerGameActor
 	GENERATED_BODY()
 
 public:
-	APowerGameLightController();
-
-	void TurnOffAllLights();
-	void TurnOnAllLights();
-	UFUNCTION(BlueprintCallable)
-	void TurnOffWorldLights();
-	void TurnOnWorldLights();
-	void FlickerLights();
+	APowerGameLightController();		
 	
 protected:
 	virtual void BeginPlay() override;
@@ -49,15 +42,26 @@ private:
 	TArray<ULightComponent*> WorldLights;
 	TArray<APowerGameLight*> CustomLights;	
 
-	UPROPERTY()
+	UPROPERTY(BlueprintReadOnly, meta=(AllowPrivateAccess="true"))
 	TObjectPtr<class APowerGameBreaker> Breaker;
 	/*** End Game initialisation functionality ***/
 
-	UFUNCTION()
-	void DetermineLightState(const EBreakerState BreakerState);
+	void TurnOffAllLights();
+	void TurnOnAllLights();
+	void TurnOffWorldLights();
+	void TurnOnWorldLights();
+	void FlickerLights();
+
+	UFUNCTION(BlueprintCallable)
+	void DetermineLightState();
+
+	UFUNCTION(BlueprintCallable)
+	EBreakerState GetBreakerState() const;
 
 	FTimerHandle FlickerLightTimer;
 	float TimeSinceLastFlicker = 0;
 	float FlickerDelay = 0;
 };
+
+
 
