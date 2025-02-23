@@ -85,7 +85,7 @@ void APowerGameLightController::FlickerLights()
 	// Apply intensity to all light components
 	for (ULightComponent* WorldLight : WorldLights)
 	{
-		WorldLight->SetIntensity(FlickerLightIntensity);
+		WorldLight->SetIntensity(NewIntensity);
 	}
 
 	FlickerDelay = FMath::RandRange(MinFlickerDelay, MaxFlickerDelay);
