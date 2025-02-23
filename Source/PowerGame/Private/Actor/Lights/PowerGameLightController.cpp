@@ -31,7 +31,7 @@ void APowerGameLightController::BeginPlay()
 	AddCustomLightsToArray();
 
 	// TEST
-	FlickerLights();
+	//FlickerLights();
 }
 
 void APowerGameLightController::TurnOffAllLights()
@@ -133,20 +133,28 @@ void APowerGameLightController::AddCustomLightsToArray()
 }
 
 // When the breaker is flipped, we need to know the position of the lever / switch, but also if the fuse is placed or not (tripped)
-void APowerGameLightController::DetermineLightState(const EBreakerState BreakerState)
+void APowerGameLightController::DetermineLightState()
 {
-	switch (BreakerState)
+	switch (GetBreakerState())
 	{
 		case EBS_Off:
 			TurnOffAllLights();
+		UE_LOG(LogTemp, Display, TEXT("DetermineLightStateOff"));
 			break;
 		case EBS_Tripped:
 			TurnOffAllLights();
+		UE_LOG(LogTemp, Display, TEXT("DetermineLightStateTripped"));
 			break;
 		case EBS_On:
 			TurnOnAllLights();
+		UE_LOG(LogTemp, Display, TEXT("DetermineLightStateOn"));
 			break;
 		default:
 			UE_LOG(LogTemp, Display, TEXT("DetermineLightState: Unknown"));
 	}
+}
+
+ EBreakerState APowerGameLightController::GetBreakerState() const
+{
+	return Breaker->GetBreakerState();
 }

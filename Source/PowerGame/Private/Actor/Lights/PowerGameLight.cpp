@@ -25,12 +25,12 @@ void APowerGameLight::Tick(float DeltaSeconds)
 	Super::Tick(DeltaSeconds);
 
 	// Flicker lights here and pulse etc
-	TimeSinceLastFlicker += DeltaSeconds;
+	//TimeSinceLastFlicker += DeltaSeconds;
 
-	if (TimeSinceLastFlicker >= FlickerDelay)
-	{
-		FlickerLights();
-	}
+	//if (TimeSinceLastFlicker >= FlickerDelay)
+	//{
+	//	FlickerLights();
+	//}
 	
 }
 
